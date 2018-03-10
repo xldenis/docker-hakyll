@@ -1,10 +1,10 @@
-FROM futtetennista/hakyll:latest
+FROM xldenis/hakyll:latest
 
 RUN apt-get update && apt-get install --yes \
     imagemagick \
     make
 
-RUN stack --resolver lts-10.6 install \
+RUN stack --resolver nightly-2018-03-10 install \
     hakyll-favicon \
     hakyll-sass
 

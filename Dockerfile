@@ -1,20 +1,14 @@
-FROM haskell:8.0.2
+FROM samdoshi/haskell-stack
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
 RUN apt-get update && apt-get install --yes \
-    git \
-    ssh
+    libpthread-stubs0-dev \
+    unzip
 
-RUN stack --resolver lts-10.6 install \
-    base \
-    bytestring \
-    conduit-combinators \
-    containers \
-    hakyll \
-    mtl \
-    stm
+RUN stack --resolver nightly-2018-03-10 install \
+    hakyll
 
 EXPOSE 8000
 

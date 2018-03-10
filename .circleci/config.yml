@@ -16,22 +16,22 @@ jobs:
           command: |
             set -euf +o pipefail
             docker load -i /caches/docker-hakyll.tar | true
-            docker build --cache-from=futtetennista/hakyll:"$HAKYLL_VERSION" -t futtetennista/hakyll:"$HAKYLL_VERSION" .
+            docker build --cache-from=xldenis/hakyll:"$HAKYLL_VERSION" -t xldenis/hakyll:"$HAKYLL_VERSION" .
       - run:
           name: Tag latest docker image
-          command: docker tag futtetennista/hakyll:"$HAKYLL_VERSION" futtetennista/hakyll:latest
+          command: docker tag xldenis/hakyll:"$HAKYLL_VERSION" xldenis/hakyll:latest
       - run:
           name: Build docker image with extensions
           command: |
             set -euf +o pipefail
             docker load -i /caches/docker-hakyll-ext.tar | true
-            docker build --cache-from=futtetennista/hakyll:"$HAKYLL_VERSION"-ext -t futtetennista/hakyll:"$HAKYLL_VERSION"-ext -f Dockerfile.ext .
+            docker build --cache-from=xldenis/hakyll:"$HAKYLL_VERSION"-ext -t xldenis/hakyll:"$HAKYLL_VERSION"-ext -f Dockerfile.ext .
       - run:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/docker-hakyll.tar futtetennista/hakyll:"$HAKYLL_VERSION"
-            docker save -o /caches/docker-hakyll-ext.tar futtetennista/hakyll:"$HAKYLL_VERSION"-ext
+            docker save -o /caches/docker-hakyll.tar xldenis/hakyll:"$HAKYLL_VERSION"
+            docker save -o /caches/docker-hakyll-ext.tar xldenis/hakyll:"$HAKYLL_VERSION"-ext
       - save_cache:
           key: v1-{{ .Branch }}-"$HAKYLL_VERSION"
           paths:
@@ -41,7 +41,7 @@ jobs:
           command: |
             if [ "$CIRCLE_BRANCH" == "master" ]; then
               docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
-              docker push futtetennista/hakyll:latest
-              docker push futtetennista/hakyll:"$HAKYLL_VERSION"
-              docker push futtetennista/hakyll:"$HAKYLL_VERSION"-ext
+              docker push xldenis/hakyll:latest
+              docker push xldenis/hakyll:"$HAKYLL_VERSION"
+              docker push xldenis/hakyll:"$HAKYLL_VERSION"-ext
             fi
