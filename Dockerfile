@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install --yes \
     git \
     ssh
 
-RUN stack --resolver lts-9.14 install \
+RUN stack --resolver lts-10.6 install \
     base \
     bytestring \
     conduit-combinators \
