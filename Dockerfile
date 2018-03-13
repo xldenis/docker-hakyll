@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install --yes \
     unzip
 
 RUN stack --resolver nightly-2018-03-10 install \
-    hakyll
+    hakyll \
+    pandoc
 
 EXPOSE 8000
 
