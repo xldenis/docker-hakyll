@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install --yes \
     libpthread-stubs0-dev \
     unzip
 
-RUN stack --resolver nightly-2018-03-10 install \
+RUN stack --resolver nightly-2018-06-10 install \
     hakyll \
     pandoc
 

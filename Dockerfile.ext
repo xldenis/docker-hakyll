@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install --yes \
     imagemagick \
     make
 
-RUN stack --resolver nightly-2018-03-10 install \
+RUN stack --resolver nightly-2018-06-10 install \
     hakyll-favicon \
     hakyll-sass
 
