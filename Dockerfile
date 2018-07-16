@@ -1,4 +1,4 @@
-FROM samdoshi/haskell-stack
+FROM haskell:8.4.3
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
