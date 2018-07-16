@@ -6,7 +6,8 @@ ENV LANG=C.UTF-8 \
 RUN apt-get update && apt-get install --yes \
     libpthread-stubs0-dev \
     unzip \
-    git
+    git \
+    ssh
 
 RUN stack --resolver nightly-2018-06-10 install \
     hakyll \
